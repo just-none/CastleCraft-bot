@@ -800,6 +800,7 @@ async def setuprolecolor(ctx = None, channel = None):
         channel = ctx.message.channel
     
     message_channel = bot.get_channel(channel)
+    await message_channel.purge(limit=25)
     embed = discord.Embed(title="Color Roles", color=color)
     embed.add_field(name="Role", value="1️⃣ - Gold", inline=True)
     embed.add_field(name="Role", value="2️⃣ - Scarlet", inline=True)
