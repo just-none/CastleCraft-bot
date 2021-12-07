@@ -1,4 +1,5 @@
 import asyncio, base64, codecs, ctypes, datetime, discord, json, os, random, requests, time
+import colorama
 from colorama import Fore
 from discord.ext import commands
 from urllib.parse import urlencode
@@ -936,7 +937,7 @@ async def botinfo(ctx):
     embed.add_field(name="Version", value=f"{version}", inline=True)
     embed.add_field(name="Commands", value=len(bot.commands), inline=True)
     embed.add_field(name="Prefix", value=f"{bot.command_prefix}", inline=True)
-    embed.add_field(name=f"Changelog v{version}", value=f"Added:\n  - Source code ({bot.command_prefix}botinfo)\nImproved:\n  - Error handling", inline=False)
+    embed.add_field(name=f"Changelog v{version}", value=f"Improved:\n  - Startup", inline=False)
     embed.add_field(name="Source", value="[GitHub](https://github.com/just-none/CastleCraft-bot)",inline=False)
     embed.set_footer(text="Created by: Piombacciaio#2151")
     embed.set_thumbnail(url=icon)
@@ -1518,21 +1519,7 @@ async def on_reaction_remove(reaction, user):
         print("" + time_ + " | " + Fore.RED + "[Error]  " + Fore.RESET + f" | An error as occourred while adding the {reaction.emoji} role: {e}")
 
 time_ = datetime.datetime.now().strftime("%H:%M")
-user = input("" + time_ + " | " + Fore.GREEN + "[Event]  " + Fore.RESET + " | please choose between r (reboot) or c (continue): ")
 
-if user.lower() == "c" or user.lower() == "continue":
-    
-    bot.run(TOKEN)
-
-elif user.lower() == "r" or user.lower() == "reboot":
-
-    try:
-
-        os.system("python castlecraft.py")
-        quit()
-
-    except:
-            
-        os.system("cls")
-        os.system("castlecraft.exe")
+colorama.init()
+bot.run(TOKEN)
 
